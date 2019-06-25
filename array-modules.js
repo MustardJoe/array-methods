@@ -8,4 +8,17 @@ function map(arr, callback) {
     return mappedArray;
 };
 
-module.exports = map;
+function filter(arr, callback) {
+    const filteredArray = [];
+    for(let i = 0; i < arr.length; i++) {
+        if(callback(arr[i])) {
+            filteredArray.push(arr[i]);
+        }
+    }
+    return filteredArray;
+}
+
+module.exports = {
+    map,
+    filter,
+}
