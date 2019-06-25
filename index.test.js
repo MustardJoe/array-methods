@@ -1,4 +1,4 @@
-const { map, filter, findIndex } = require('./array-modules');
+const { map, filter, findIndex, reduce } = require('./array-modules');
 
 
 describe('my hand made array methods', () => {
@@ -55,6 +55,31 @@ describe('my hand made array methods', () => {
 
             const foundThing = findIndex(array1, number => number === 4);
             expect(foundThing).toEqual(2);
+        });
+    });
+
+    describe('reduce function', () => {
+        it('iterates through an array and invokes callback', () => {
+            const numbers = [1, 2, 3];
+            const callback = jest.fn();
+
+            reduce(numbers, callback, 0);
+
+            expect(callback).toHaveBeenCalledTimes(numbers.length);
+        });
+
+        it('iterates through array and sets the acc with results of callback', () => {
+            const numbers = [1, 2, 3];
+
+            const sum = reduce(numbers, (acc, item) => acc + item, 0);
+            expect(sum).toEqual(6);
+        });
+
+        it('works even if we dont provide initial values', () => {
+            const numbers = [1, 2, 3];
+
+            const sum = reduce(numbers, (acc, item) => acc + item);
+            expect(sum).toEqual(6);
         });
     });
 });
